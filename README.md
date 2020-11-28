@@ -4,7 +4,9 @@ Repositorio de CademiLabs y Cademi | Insight
 
 ## Rules:
 
-Se usará libreria Tidiverse
+Se usará libreria Tidiverse para graficar.
+
+En caso de usar o manipular otras librerias gráficas se debe especificar en el Script.
 
 Cualquier código innecesario o demasiado complicado será amolestado con la abreviación K.I.S.S (Keep It Simple, Stupid!).
 
