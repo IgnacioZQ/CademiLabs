@@ -13,3 +13,7 @@ Cualquier código innecesario o demasiado complicado será amolestado con la abr
 Cada vez que se haga un Commit, se hará "UPDATE" acompañado de los cambios realizados.
 
 Al hacer algún cambio en el código, se debe avisar a lxs integrantes del grupo sobre su modificación.
+
+## Projects:
+
+1- Startups Crunchbase 2013.
