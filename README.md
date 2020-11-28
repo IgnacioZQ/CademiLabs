@@ -16,4 +16,4 @@ Al hacer algún cambio en el código, se debe avisar a lxs integrantes del grupo
 
 ## Projects:
 
-1- Startups Crunchbase 2013.
+1- Startups Crunchbase 2013 (Nacho y Nico).
