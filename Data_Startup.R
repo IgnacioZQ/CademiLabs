@@ -23,4 +23,8 @@ crunchbase_investments <- read_csv("crunch2013/crunchbase-investments.csv")
 
 Dataset <- select(crunchbase_investments, company_category_code, funded_year, raised_amount_usd)
 
+# Para graficar y realizar los análisis usar la base de datos Data_Limpia.csv.
+
+Data_Limpia <- read_csv("crunch2013/Data_Limpia.csv")
+
 ### Grafica
