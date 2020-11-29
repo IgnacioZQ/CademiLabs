@@ -1,3 +1,6 @@
+library(readr)
+library(dplyr)
+
 # Observaciones
 
 # Que tipo de startups tiene mas exito.
@@ -12,5 +15,12 @@
 
 # Pregunta / Observación 2: Ver el total e inversión en cada categoria y comparar cual ha recibido mayor inversión en el tiempo (Gráfico de Barra / Columna).
 
-View(crunchbase_investments)
+### Cargar base de datos
 
+crunchbase_investments <- read_csv("crunch2013/crunchbase-investments.csv")
+
+### Limpiar base de datos.
+
+Dataset <- select(crunchbase_investments, company_category_code, funded_year, raised_amount_usd)
+
+### Grafica
