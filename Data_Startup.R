@@ -1,5 +1,6 @@
 library(readr)
 library(dplyr)
+library(ggplot2)
 
 # Observaciones
 
@@ -26,5 +27,14 @@ Dataset <- select(crunchbase_investments, company_category_code, funded_year, ra
 # Para graficar y realizar los análisis usar la base de datos Data_Limpia.csv.
 
 Data_Limpia <- read_csv("crunch2013/Data_Limpia.csv")
+
+#Filraremos solamente las inversiones sobre 10.000.000 USD desde el año 2000 hasta 2013
+
+Data_Limpia_2 <- filter(Data_Limpia, Data_Limpia$raised_amount_usd >= 10000000,
+                        Data_Limpia$funded_year >= 2000)
+Data_Limpia_2 <- na.omit(Data_Limpia_2) # (Eliminar NA y valores nulos)
+
+# IDEA: Podriamos segmentar las variables en varios tipos.
+# Ej: ECONOMY (ecommerce, enterpise, finance) TECHNOLOGY (analytics, game_video, mobile, nanotech, software)
 
 ### Grafica
