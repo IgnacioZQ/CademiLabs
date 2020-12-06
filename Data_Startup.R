@@ -40,7 +40,9 @@ Data_Limpia_2 <- na.omit(Data_Limpia_2) # (Eliminar NA y valores nulos)
 
 ### Grafica
 
-ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = raised_amount_usd, color = company_category_code, color = funded_year) +
+# ¿Cuales han sido las inversiones de Startups a lo largo del tiempo?
+
+ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = raised_amount_usd, color = funded_year)) +
   geom_segment(aes(x = company_category_code, xend = company_category_code, y = 0, yend = raised_amount_usd)) +
   geom_point(size=0.2, color= "orange", alpha=0.5, shape=21, stroke=2) +
   theme_light() +
@@ -56,3 +58,10 @@ ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = raised_amount_us
        x = ""
   )
 
+## Observaciones
+
+# 32 de las Startups no recibieron inversiones por sobre los 1.000.000.000 USD, lo que equivale al 78% del total de las Startups.
+# Las startups con mayores inversiones son Mobile, Health y Social. (liderando Mobile).
+# Durante el año 2000 hubo un incremento en inversiones de Startups Mobile.
+# Las Startups que mas tuvieron inversion temprana (1995 - 2005) fueron Mobile, Manufacturing, Public Relations.
+# Las Startups que mas tuvieron inversion tardía (2006 - 2013) fueron Health, Education, Network Hosting, Security.
