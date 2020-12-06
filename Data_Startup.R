@@ -4,6 +4,7 @@ library(ggplot2)
 library(tidyverse)
 library(hrbrthemes)
 library(viridis)
+library(lubridate)
 
 # Observaciones
 
@@ -81,10 +82,7 @@ ggplot(Data_Limpia_2, mapping = aes(x = funded_year, y = raised_amount_usd, size
   theme(legend.position = "none") +
   labs(title="Inversiones a Startups entre 1995 - 2013 a partir de los 10.000.000 USD", 
        caption="Fuente: Base de Datos Crunchbase 2013") +
-  theme_minimal() +
-  theme(
-    axis.text = element_blank(),
-    axis.title = element_blank(),
-    panel.grid = element_blank(),
-    plot.margin = unit(rep(-1,4), "cm")
-  )
+  scale_y_continuous(labels = scales::dollar_format()) +
+  theme (text = element_text(size=8)) +
+  geom_text(data = Data_Limpia_2, aes(x = funded_year, y = raised_amount_usd, label = company_category_code), color="black", fontface="bold",alpha=0.5, size=2, inherit.aes = FALSE,)
+  
