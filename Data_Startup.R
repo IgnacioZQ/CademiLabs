@@ -2,8 +2,6 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
-library(forcats)
-library(countrycode)
 
 # Observaciones
 
@@ -42,7 +40,7 @@ Data_Limpia_2 <- na.omit(Data_Limpia_2) # (Eliminar NA y valores nulos)
 
 ### Grafica
 
-ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = raised_amount_usd)) +
+ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = raised_amount_usd, color = company_category_code, color = funded_year) +
   geom_segment(aes(x = company_category_code, xend = company_category_code, y = 0, yend = raised_amount_usd)) +
   geom_point(size=0.2, color= "orange", alpha=0.5, shape=21, stroke=2) +
   theme_light() +
@@ -57,3 +55,4 @@ ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = raised_amount_us
        y = "Inversion en USD", 
        x = ""
   )
+
