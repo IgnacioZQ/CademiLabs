@@ -2,6 +2,8 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
+library(hrbrthemes)
+library(viridis)
 
 # Observaciones
 
@@ -65,3 +67,24 @@ ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = raised_amount_us
 # Durante el año 2000 hubo un incremento en inversiones de Startups Mobile.
 # Las Startups que mas tuvieron inversion temprana (1995 - 2005) fueron Mobile, Manufacturing, Public Relations.
 # Las Startups que mas tuvieron inversion tardía (2006 - 2013) fueron Health, Education, Network Hosting, Security.
+
+# Gráfico de burbuja.
+
+ggplot(Data_Limpia_2, mapping = aes(x = funded_year, y = raised_amount_usd, size = raised_amount_usd, colour = raised_amount_usd)) +
+  geom_point(alpha=0.4) +
+  scale_size_continuous(range=c(1, 24)) +
+  scale_colour_continuous(guide = FALSE) +
+  theme_ipsum() +
+  theme(legend.position="bottom") +
+  ylab("Investment in USD") +
+  xlab("Year") +
+  theme(legend.position = "none") +
+  labs(title="Inversiones a Startups entre 1995 - 2013 a partir de los 10.000.000 USD", 
+       caption="Fuente: Base de Datos Crunchbase 2013") +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(rep(-1,4), "cm")
+  )
