@@ -81,27 +81,23 @@ ggplot(Data_Limpia_2, mapping = aes(x = funded_year, y = raised_amount_usd, size
   xlab("Year") +
   theme(legend.position = "none") +
   labs(title="Inversiones a Startups entre 1995 - 2013 a partir de los 10.000.000 USD", 
-       caption="Fuente: Base de Datos Crunchbase 2013") +
+       caption="FUENTE: Base de Datos Crunchbase 2013") +
   scale_y_continuous(labels = scales::dollar_format()) +
   theme (text = element_text(size=10)) +
   geom_text(data = Data_Limpia_2 %>% filter(raised_amount_usd >= 400000000), aes(x = funded_year, y = raised_amount_usd, label = company_category_code), color="black", fontface="bold",alpha= 0.5, size=3.8, inherit.aes = FALSE)
 
+
 ## Gráfico de burbuja 2
 
 ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = funded_year, color = raised_amount_usd, size = raised_amount_usd)) +
-  geom_point(alpha=0.1) +
+  geom_point(alpha=0.04) +
   theme (text = element_text(size=10)) +
   coord_flip() +
-  theme_minimal() +
-  theme(legend.position="bottom") +
+  theme_light() +
   ylab("Year") +
   xlab("Company Category") +
-  theme(legend.position = "none") +
   labs(title="Inversiones a Startups entre 1995 - 2013 a partir de los 10.000.000 USD", 
-       caption="Fuente: Base de Datos Crunchbase 2013") +
-  scale_size_continuous(range=c(1, 24)) +
-  scale_colour_continuous(guide = FALSE) +
-  geom_text(data = Data_Limpia_2 %>% filter(raised_amount_usd >= 600000000), aes(x = company_category_code, y = funded_year, label = raised_amount_usd, color = raised_amount_usd, size = raised_amount_usd), color="red", fontface="bold",alpha= 10, size=3.8, inherit.aes = FALSE)
-
-
-  
+       caption="FUENTE: Base de Datos Crunchbase 2013") +
+  scale_size_continuous(range=c(1, 23), labels = scales::dollar_format(), name = "Investment in USD") +
+  scale_color_continuous(guide = FALSE, labels = scales::dollar_format()) +
+  scale_fill_viridis(discrete=TRUE, guide=FALSE, option="A")
