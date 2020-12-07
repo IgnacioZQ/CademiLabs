@@ -45,6 +45,8 @@ Data_Limpia_2 <- na.omit(Data_Limpia_2) # (Eliminar NA y valores nulos)
 
 # ¿Cuales han sido las inversiones de Startups a lo largo del tiempo?
 
+##Gráfico 1 (Plantilla)
+
 ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = raised_amount_usd, color = funded_year)) +
   geom_segment(aes(x = company_category_code, xend = company_category_code, y = 0, yend = raised_amount_usd)) +
   geom_point(size=0.2, color= "orange", alpha=0.5, shape=21, stroke=2) +
@@ -69,7 +71,7 @@ ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = raised_amount_us
 # Las Startups que mas tuvieron inversion temprana (1995 - 2005) fueron Mobile, Manufacturing, Public Relations.
 # Las Startups que mas tuvieron inversion tardía (2006 - 2013) fueron Health, Education, Network Hosting, Security.
 
-## Gráfico de burbuja.
+## Gráfico de burbuja 1
 
 ggplot(Data_Limpia_2, mapping = aes(x = funded_year, y = raised_amount_usd, size = raised_amount_usd, colour = raised_amount_usd)) +
   geom_point(alpha=0.4) +
