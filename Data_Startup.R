@@ -63,13 +63,14 @@ ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = raised_amount_us
        x = ""
   )
 
-## Observaciones
+## Observaciones Gráfico 1
 
-# 32 de las Startups no recibieron inversiones por sobre los 1.000.000.000 USD, lo que equivale al 78% del total de las Startups.
+# 32 de las Startups no recibieron inversiones por sobre los 1.000.000.000 USD, lo que equivale al 78% del total de las Startups. Por ende, aquellas que recibieron por sobre los 1.000.000.00 USD equivalen a 22%.
 # Las startups con mayores inversiones son Mobile, Health y Social. (liderando Mobile).
 # Durante el año 2000 hubo un incremento en inversiones de Startups Mobile.
-# Las Startups que mas tuvieron inversion temprana (1995 - 2005) fueron Mobile, Manufacturing, Public Relations.
 # Las Startups que mas tuvieron inversion tardía (2006 - 2013) fueron Health, Education, Network Hosting, Security.
+# A partir del año 2005 se comenzó a ver un alto incremento en Inversiones de Startups.
+
 
 ## Gráfico de burbuja 1
 
@@ -86,7 +87,7 @@ ggplot(Data_Limpia_2, mapping = aes(x = funded_year, y = raised_amount_usd, size
        caption="FUENTE: Base de Datos Crunchbase 2013") +
   scale_y_continuous(labels = scales::dollar_format()) +
   theme (text = element_text(size=10)) +
-  geom_text(data = Data_Limpia_2 %>% filter(raised_amount_usd >= 400000000), aes(x = funded_year, y = raised_amount_usd, label = company_category_code), color="black", fontface="bold",alpha= 0.5, size=3.8, inherit.aes = FALSE)
+  geom_text(data = Data_Limpia_2 %>% filter(raised_amount_usd >= 600000000), aes(x = funded_year, y = raised_amount_usd, label = company_category_code), color="black", fontface="bold",alpha= 0.5, size=3.5, inherit.aes = FALSE)
 
 
 ## Gráfico de burbuja 2
@@ -103,3 +104,11 @@ ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = funded_year, col
   scale_size_continuous(range=c(1, 23), labels = scales::dollar_format(), name = "Investment in USD") +
   scale_color_continuous(guide = FALSE, labels = scales::dollar_format()) +
   scale_fill_viridis(discrete=TRUE, guide=FALSE, option="A")
+
+# Observaciónes Gráfico 2
+# El tamaño de la burbuja es según las inversiones unitarias por año. Al haber varias inversiones en un mismo año, se encuentran sobrecolocadas unas sobre otras.
+# Las Startups que mas tuvieron inversion temprana (1995 - 2005) fueron Mobile, Manufacturing, Public Relations.
+# Web y Software han sido las Startups que mas han mantenido inversiones constantes a lo largo del tiempo.
+# La Startup con mayor magnitud de inversiones fué Mobile.
+# A partir del 2005 Biotech, Cleantech, Ecommerce, Education, Medical, Advertising,  Mobile, Nanotech, Network_Hosting, Security y software Tvieron un impulso de Inversiones a partir del 2005.
+# Las Satartups que tuvieron menos inversiones y no se mantuvieron con el tiempo fueron Legal, Local, Design, Pets, Sport y Nonprofit.
