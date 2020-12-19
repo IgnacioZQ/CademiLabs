@@ -22,7 +22,7 @@ library(lubridate)
 
 ### Cargar base de datos
 
-crunchbase_investments <- read_csv("crunch2013/crunchbase-investments.csv")
+crunchbase_investments <- read_csv("C:/Users/ignacio/Desktop/UDP/Proyecto R CADEMI/cademi/CademiLabs/crunch2013/crunchbase-investments.csv")
 
 ### Limpiar base de datos.
 
@@ -30,7 +30,7 @@ Dataset <- select(crunchbase_investments, company_category_code, funded_year, ra
 
 # Para graficar y realizar los análisis usar la base de datos Data_Limpia.csv.
 
-Data_Limpia <- read_csv("crunch2013/Data_Limpia.csv")
+Data_Limpia <- read_csv("C:/Users/ignacio/Desktop/UDP/Proyecto R CADEMI/cademi/CademiLabs/crunch2013/crunchbase-investments.csv")
 
 #Filraremos solamente las inversiones sobre 10.000.000 USD desde el año 1995 hasta 2013
 
