@@ -5,8 +5,9 @@ library(tidyverse)
 library(hrbrthemes)
 library(viridis)
 library(lubridate)
+library(RCurl)
 
-# Observaciones
+# Observaciones2
 
 # Que tipo de startups tiene mas exito.
 
@@ -20,17 +21,10 @@ library(lubridate)
 
 # Pregunta / Observación 2: Ver el total e inversión en cada categoria y comparar cual ha recibido mayor inversión en el tiempo (Gráfico de Barra / Columna).
 
-### Cargar base de datos
-
-crunchbase_investments <- read_csv("crunch2013/crunchbase-investments.csv")
-
-### Limpiar base de datos.
-
-Dataset <- select(crunchbase_investments, company_category_code, funded_year, raised_amount_usd)
-
 # Para graficar y realizar los análisis usar la base de datos Data_Limpia.csv.
 
-Data_Limpia <- read_csv("crunch2013/Data_Limpia.csv")
+Data_Limpia <- getURL("https://raw.githubusercontent.com/IgnacioZQ/CademiLabs/main/crunch2013/crunchbase-investments.csv")
+Data_Limpia <- read.csv(text = Data_Limpia)
 
 #Filraremos solamente las inversiones sobre 10.000.000 USD desde el año 1995 hasta 2013
 
@@ -90,7 +84,7 @@ ggplot(Data_Limpia_2, mapping = aes(x = funded_year, y = raised_amount_usd, size
   geom_text(data = Data_Limpia_2 %>% filter(raised_amount_usd >= 600000000), aes(x = funded_year, y = raised_amount_usd, label = company_category_code), color="black", fontface="bold",alpha= 0.5, size=3.5, inherit.aes = FALSE)
 
 
-## Gráfico de burbuja 2
+## Gráfico de burbuja 2 (DEFINITIVO).
 
 ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = funded_year, color = raised_amount_usd, size = raised_amount_usd)) +
   geom_point(alpha=0.04) +
@@ -112,3 +106,5 @@ ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = funded_year, col
 # La Startup con mayor magnitud de inversiones fué Mobile.
 # A partir del 2005 Biotech, Cleantech, Ecommerce, Education, Medical, Advertising,  Mobile, Nanotech, Network_Hosting, Security y software Tvieron un impulso de Inversiones a partir del 2005.
 # Las Satartups que tuvieron menos inversiones y no se mantuvieron con el tiempo fueron Legal, Local, Design, Pets, Sport y Nonprofit.
+
+## Gráfico "Total de Inversiones"
