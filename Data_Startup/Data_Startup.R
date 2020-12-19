@@ -108,3 +108,4 @@ ggplot(data = Data_Limpia_2, aes(x = company_category_code, y = funded_year, col
 # Las Satartups que tuvieron menos inversiones y no se mantuvieron con el tiempo fueron Legal, Local, Design, Pets, Sport y Nonprofit.
 
 ## Gráfico "Total de Inversiones"
+# Gráfico de Barras.
