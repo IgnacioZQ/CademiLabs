@@ -1,4 +1,5 @@
 # Data Mapas
+
 install.packages("ggplot2")
 install.packages("sf")
 library(sf)
@@ -10,14 +11,6 @@ library(hrbrthemes)
 library(viridis)
 library(lubridate)
 
-
-library(readr)
-library(dplyr)
-library(ggplot2)
-library(tidyverse)
-library(hrbrthemes)
-library(viridis)
-library(lubridate)
 ### Cargar base de datos
 
 crunchbase_investments <- read_csv("crunch2013/crunchbase-investments.csv")
