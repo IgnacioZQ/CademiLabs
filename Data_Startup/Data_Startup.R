@@ -114,11 +114,16 @@ ggplot(data = Data_Limpia_3, aes(x = company_category_code, y = funded_year, col
 Total_Inv_Cat <- Data_Limpia_3 %>%
   group_by(company_category_code) %>%
   summarise(sum(raised_amount_usd))
+Total_Inv_Cat <- na.omit(Total_Inv_Cat) # (Eliminar NA y valores nulos)
 
-ggplot(data = Total_Inv_Cat, aes(x = company_category_code, y = `sum(raised_amount_usd)`)) +
-  geom_segment(aes(x = company_category_code, xend = company_category_code, y = `sum(raised_amount_usd)`, yend = 0), size = 1.5, color = "gray") +
+Total_Inv_Cat %>%
+  arrange(`sum(raised_amount_usd)`) %>%
+  mutate(company_category_code = factor(company_category_code, levels = company_category_code)) %>%
+  ggplot(aes(x = company_category_code, y = `sum(raised_amount_usd)`)) +
+  geom_segment(aes(x = company_category_code, xend = company_category_code, y = `sum(raised_amount_usd)`, yend = 0), size = 1.6, color = "sandybrown") +
   theme_light() +
-  geom_point( size = 3, color="gray") +
+  geom_point( size = 3.5, color="orange2") +
+  geom_point( size = 1.5, color="white") +
   coord_flip() +
   theme(
     panel.grid.major.y = element_blank(),
