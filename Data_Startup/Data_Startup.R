@@ -83,12 +83,13 @@ ggplot(Data_Limpia_3, mapping = aes(x = funded_year, y = raised_amount_usd, size
        caption="FUENTE: Base de Datos Crunchbase 2013") +
   scale_y_continuous(labels = scales::dollar_format()) +
   theme (text = element_text(size=10)) +
-  geom_text(data = Data_Limpia_3 %>% filter(raised_amount_usd >= 600000000), aes(x = funded_year, y = raised_amount_usd, label = company_category_code), color="black", fontface="bold",alpha= 0.5, size=3.5, inherit.aes = FALSE)
+  geom_text(data = Data_Limpia_3 %>%
+              filter(raised_amount_usd >= 600000000), aes(x = funded_year, y = raised_amount_usd, label = company_category_code), color="black", fontface="bold",alpha= 0.5, size=3.5, inherit.aes = FALSE)
 
 
 ## Gráfico de burbuja 2 (DEFINITIVO).
 
-ggplot(data = Data_Limpia_3, aes(x = company_category_code, y = funded_year, color = raised_amount_usd, size = raised_amount_usd)) +
+ggplot(data = Data_Limpia_3, aes(x = company_category_code, y = funded_year, size = raised_amount_usd)) +
   geom_point(alpha=0.04) +
   theme (text = element_text(size=10)) +
   coord_flip() +
@@ -133,7 +134,7 @@ Total_Inv_Cat %>%
   labs(title = "Total de Inversiones a Startups por Categoria a partir de los 100.000 USD", 
        caption = "FUENTE: Base de Datos Crunchbase 2013",
        subtitle = "Entre 1995 - 2013") +
-  scale_y_continuous(labels = scales::dollar_format()) +
+  scale_y_continuous(labels = scales::dollar_format(), breaks = c(20000000000, 40000000000, 60000000000, 80000000000, 100000000000)) +
   ylab("Investment in USD") +
   xlab("Category") +
   geom_text(aes(label = Total_Inv_Cat$`sum(raised_amount_usd)`), hjust = -.1, nudge_x = 0, color = "gray60", size = 3.2)
