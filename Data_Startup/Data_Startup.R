@@ -28,7 +28,7 @@ Data_Limpia <- read.csv(text = Data_Limpia)
 
 #Filraremos solamente las inversiones sobre 10.000.000 USD desde el año 1995 hasta 2013
 
-Data_Limpia_2 <- filter(Data_Limpia, Data_Limpia$raised_amount_usd >= 10000000, Data_Limpia$funded_year >= 1995)
+Data_Limpia_2 <- filter(Data_Limpia, Data_Limpia$raised_amount_usd >= 100000, Data_Limpia$funded_year >= 1995)
 
 Data_Limpia_2 <- na.omit(Data_Limpia_2) # (Eliminar NA y valores nulos)
 
@@ -95,7 +95,7 @@ ggplot(data = Data_Limpia_3, aes(x = company_category_code, y = funded_year, col
   theme_light() +
   ylab("Year") +
   xlab("Company Category") +
-  labs(title="Inversiones a Startups entre 1995 - 2013 a partir de los 10.000.000 USD", 
+  labs(title="Inversiones a Startups entre 1995 - 2013 a partir de los 100.000 USD", 
        caption="FUENTE: Base de Datos Crunchbase 2013") +
   scale_size_continuous(range=c(1, 23), labels = scales::dollar_format(), name = "Investment in USD") +
   scale_color_continuous(guide = FALSE, labels = scales::dollar_format()) +
@@ -120,9 +120,9 @@ Total_Inv_Cat %>%
   arrange(`sum(raised_amount_usd)`) %>%
   mutate(company_category_code = factor(company_category_code, levels = company_category_code)) %>%
   ggplot(aes(x = company_category_code, y = `sum(raised_amount_usd)`)) +
-  geom_segment(aes(x = company_category_code, xend = company_category_code, y = `sum(raised_amount_usd)`, yend = 0), size = 1.6, color = "sandybrown") +
+  geom_segment(aes(x = company_category_code, xend = company_category_code, y = `sum(raised_amount_usd)`, yend = 0), size = 1.6, color = "cyan2") +
   theme_light() +
-  geom_point( size = 3.5, color="orange2") +
+  geom_point( size = 3.5, color="cyan3") +
   geom_point( size = 1.5, color="white") +
   coord_flip() +
   theme(
@@ -130,12 +130,14 @@ Total_Inv_Cat %>%
     panel.border = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  labs(title="Total de Inversiones a Startups entre 1995 - 2013 por Categoria a partir de los 10.000.000 USD", 
-       caption="FUENTE: Base de Datos Crunchbase 2013") +
+  labs(title = "Total de Inversiones a Startups por Categoria a partir de los 100.000 USD", 
+       caption = "FUENTE: Base de Datos Crunchbase 2013",
+       subtitle = "Entre 1995 - 2013") +
   scale_y_continuous(labels = scales::dollar_format()) +
   ylab("Investment in USD") +
-  xlab("Category")
-
+  xlab("Category") +
+  geom_text(aes(label = Total_Inv_Cat$`sum(raised_amount_usd)`), hjust = -.1, nudge_x = 0, color = "gray60", size = 3.2)
+  
 ## Gráfico "Total de Inversiones por Año"
 
 Total_Inv_Year <- Data_Limpia_3 %>%
@@ -143,14 +145,14 @@ Total_Inv_Year <- Data_Limpia_3 %>%
   summarise(sum(raised_amount_usd))
 
 ggplot(data = Total_Inv_Year, aes(x = `Data_Limpia_3$funded_year`, y = `sum(raised_amount_usd)`)) +
-  geom_segment(aes(x = `Data_Limpia_3$funded_year`, xend = `Data_Limpia_3$funded_year`, y = `sum(raised_amount_usd)`, yend = 0), size = 8, color = "gray") +
+  geom_segment(aes(x = `Data_Limpia_3$funded_year`, xend = `Data_Limpia_3$funded_year`, y = `sum(raised_amount_usd)`, yend = 0), size = 8, color = "cyan3") +
   theme_light() +
   theme(
     panel.grid.major.y = element_blank(),
     panel.border = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  labs(title="Total de Inversiones a Startups por Año entre 1995 - 2013 a partir de los 10.000.000 USD", 
+  labs(title="Total de Inversiones a Startups por Año entre 1995 - 2013 a partir de los 100.000 USD", 
        caption="FUENTE: Base de Datos Crunchbase 2013") +
   scale_y_continuous(labels = scales::dollar_format()) +
   scale_x_continuous(breaks = c(1995, 1997, 1999, 2001, 2003, 2005, 2007, 2009, 2011, 2013)) +
