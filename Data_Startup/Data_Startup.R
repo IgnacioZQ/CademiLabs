@@ -32,7 +32,8 @@ Data_Limpia_2 <- filter(Data_Limpia, Data_Limpia$raised_amount_usd >= 100000, Da
 
 Data_Limpia_2 <- na.omit(Data_Limpia_2) # (Eliminar NA y valores nulos)
 
-Data_Limpia_3 <- select(Data_Limpia_2, company_category_code, funded_year, raised_amount_usd)
+Data_Limpia_3 <- select(Data_Limpia_2, company_category_code, funded_year, raised_amount_usd) %>%
+  filter(Data_Limpia_3$company_category_code!= "")
 
 # IDEA: Podriamos segmentar las variables en varios tipos.
 # Ej: ECONOMY (ecommerce, enterpise, finance) TECHNOLOGY (analytics, game_video, mobile, nanotech, software)
@@ -96,8 +97,9 @@ ggplot(data = Data_Limpia_3, aes(x = company_category_code, y = funded_year, siz
   theme_light() +
   ylab("Year") +
   xlab("Company Category") +
-  labs(title="Inversiones a Startups entre 1995 - 2013 a partir de los 100.000 USD", 
-       caption="FUENTE: Base de Datos Crunchbase 2013") +
+  labs(title = paste("Inversiones a Startups entre 1995 - 2013 a partir de los 100.000 USD"), 
+       caption="FUENTE: Base de Datos Crunchbase 2013",
+       subtitle = paste("Entre 1995 - 2013")) +
   scale_size_continuous(range=c(1, 23), labels = scales::dollar_format(), name = "Investment in USD") +
   scale_color_continuous(guide = FALSE, labels = scales::dollar_format()) +
   scale_fill_viridis(discrete=TRUE, guide=FALSE, option="A")
@@ -115,7 +117,6 @@ ggplot(data = Data_Limpia_3, aes(x = company_category_code, y = funded_year, siz
 Total_Inv_Cat <- Data_Limpia_3 %>%
   group_by(company_category_code) %>%
   summarise(sum(raised_amount_usd))
-Total_Inv_Cat <- na.omit(Total_Inv_Cat) # (Eliminar NA y valores nulos)
 
 Total_Inv_Cat %>%
   arrange(`sum(raised_amount_usd)`) %>%
@@ -136,8 +137,7 @@ Total_Inv_Cat %>%
        subtitle = "Entre 1995 - 2013") +
   scale_y_continuous(labels = scales::dollar_format(), breaks = c(20000000000, 40000000000, 60000000000, 80000000000, 100000000000)) +
   ylab("Investment in USD") +
-  xlab("Category") +
-  geom_text(aes(label = Total_Inv_Cat$`sum(raised_amount_usd)`), hjust = -.1, nudge_x = 0, color = "gray60", size = 3.2)
+  xlab("Category")
   
 ## Gráfico "Total de Inversiones por Año"
 
@@ -153,8 +153,9 @@ ggplot(data = Total_Inv_Year, aes(x = `Data_Limpia_3$funded_year`, y = `sum(rais
     panel.border = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  labs(title="Total de Inversiones a Startups por Año entre 1995 - 2013 a partir de los 100.000 USD", 
-       caption="FUENTE: Base de Datos Crunchbase 2013") +
+  labs(title = paste("Total de Inversiones a Startups por Año a partir de los 100.000 USD"), 
+       caption="FUENTE: Base de Datos Crunchbase 2013",
+       subtitle = paste("Entre 1995 - 2013")) +
   scale_y_continuous(labels = scales::dollar_format()) +
   scale_x_continuous(breaks = c(1995, 1997, 1999, 2001, 2003, 2005, 2007, 2009, 2011, 2013)) +
   ylab("Investment in USD") +
