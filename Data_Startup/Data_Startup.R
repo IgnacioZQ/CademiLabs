@@ -33,7 +33,7 @@ Data_Limpia_2 <- filter(Data_Limpia, Data_Limpia$raised_amount_usd >= 100000, Da
 Data_Limpia_2 <- na.omit(Data_Limpia_2) # (Eliminar NA y valores nulos)
 
 Data_Limpia_3 <- select(Data_Limpia_2, company_category_code, funded_year, raised_amount_usd) %>%
-  filter(Data_Limpia_3$company_category_code!= "")
+  filter(Data_Limpia_2$company_category_code!= "")
 
 # IDEA: Podriamos segmentar las variables en varios tipos.
 # Ej: ECONOMY (ecommerce, enterpise, finance) TECHNOLOGY (analytics, game_video, mobile, nanotech, software)
