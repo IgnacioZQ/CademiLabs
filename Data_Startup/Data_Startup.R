@@ -132,12 +132,12 @@ Total_Inv_Cat %>%
     panel.border = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  labs(title = "Total de Inversiones a Startups por Categoria a partir de los 100.000 USD", 
+  labs(title = "Top Startups de la Década", 
        caption = "FUENTE: Base de Datos Crunchbase 2013",
-       subtitle = "Entre 1995 - 2013") +
+       subtitle = "Total de Inversiones a Startups por Categoria a partir de los 100.000 USD entre 1995 - 2013") +
   scale_y_continuous(labels = scales::dollar_format(), breaks = c(20000000000, 40000000000, 60000000000, 80000000000, 100000000000)) +
-  ylab("Investment in USD") +
-  xlab("Category")
+  ylab("Inversiones en USD") +
+  xlab("Categoria")
   
 ## Gráfico "Total de Inversiones por Año"
 
@@ -153,10 +153,15 @@ ggplot(data = Total_Inv_Year, aes(x = `Data_Limpia_3$funded_year`, y = `sum(rais
     panel.border = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  labs(title = paste("Total de Inversiones a Startups por Año a partir de los 100.000 USD"), 
+  labs(title = paste("El periodo del exito de las Startups"), 
        caption="FUENTE: Base de Datos Crunchbase 2013",
-       subtitle = paste("Entre 1995 - 2013")) +
-  scale_y_continuous(labels = scales::dollar_format()) +
+       subtitle = paste("Total de Inversiones a Startups por Año a partir de los 100.000 USD entre 1995 - 2013")) +
+  scale_y_continuous(labels = scales::dollar_format(), breaks = c(20000000000, 40000000000, 60000000000, 80000000000, 100000000000)) +
   scale_x_continuous(breaks = c(1995, 1997, 1999, 2001, 2003, 2005, 2007, 2009, 2011, 2013)) +
-  ylab("Investment in USD") +
-  xlab("Year")
+  ylab("Inversiones en USD") +
+  xlab("Año")
+
+### Notas:
+
+# Nico: Eje Y de ingles a español (Gráfico 1)
+# Nacho: Graficar linea del promedio de inversiones (Gráfico 2)
