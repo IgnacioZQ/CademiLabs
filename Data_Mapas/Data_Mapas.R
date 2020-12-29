@@ -2,6 +2,8 @@
 
 install.packages("ggplot2")
 install.packages("sf")
+install.packages("raster")
+install.packages("ggspatial")
 library(sf)
 library(ggplot2)
 library(readr)
@@ -11,6 +13,8 @@ library(hrbrthemes)
 library(viridis)
 library(lubridate)
 library(RCurl)
+library(raster)
+library(ggspatial)
 
 Data_Limpia <- getURL("https://raw.githubusercontent.com/IgnacioZQ/CademiLabs/main/crunch2013/crunchbase-investments.csv")
 
