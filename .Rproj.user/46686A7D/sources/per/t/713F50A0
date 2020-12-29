@@ -1,0 +1,32 @@
+{
+    "id": "713F50A0",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1606570473452.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "expression": "crunchbase_investments",
+        "caption": "crunchbase_investments",
+        "totalObservations": 52870,
+        "displayedObservations": 52870,
+        "variables": 20,
+        "cacheKey": "D437FEA9",
+        "object": "crunchbase_investments",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=crunchbase_investments&cache_key=D437FEA9&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 8242469376099640165,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1606570473452,
+    "read_only": false,
+    "read_only_alternatives": []
+}
