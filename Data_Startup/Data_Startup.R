@@ -125,7 +125,7 @@ Total_Inv_Cat %>%
     panel.border = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  labs(title = "Top Startups de la Década", 
+  labs(title = "Top Categorias de Startups de la Década", 
        caption = "FUENTE: Base de Datos Crunchbase 2013",
        subtitle = "Total de Inversiones a Startups por Categoria a partir de los 100.000 USD entre 1995 - 2013") +
   scale_y_continuous(labels = scales::dollar_format(), breaks = c(20000000000, 40000000000, 60000000000, 80000000000, 100000000000)) +
@@ -161,3 +161,4 @@ ggplot(data = Total_Inv_Year, aes(x = `Data_Limpia_3$funded_year`, y = `sum(rais
 
 ### Notas:
 # Nico: Eje Y de ingles a español (Gráfico 1)
+# Dividir la columna de Inversiones por 1000 USD.
