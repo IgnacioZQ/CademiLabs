@@ -1,11 +1,13 @@
-library(readr)
+#Librerias
+
+{library(readr)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(hrbrthemes)
 library(viridis)
 library(lubridate)
-library(RCurl)
+library(RCurl)}
 
 # Observaciones2
 
@@ -23,17 +25,17 @@ library(RCurl)
 
 # Para graficar y realizar los análisis usar la base de datos Data_Limpia.csv.
 
-Data_Limpia <- getURL("https://raw.githubusercontent.com/IgnacioZQ/CademiLabs/main/crunch2013/crunchbase-investments.csv")
-Data_Limpia <- read.csv(text = Data_Limpia)
+{Data_Limpia <- getURL("https://raw.githubusercontent.com/IgnacioZQ/CademiLabs/main/crunch2013/crunchbase-investments.csv")
+Data_Limpia <- read.csv(text = Data_Limpia)}
 
 #Filraremos solamente las inversiones sobre 10.000.000 USD desde el año 1995 hasta 2013
 
-Data_Limpia_2 <- filter(Data_Limpia, Data_Limpia$raised_amount_usd >= 100000, Data_Limpia$funded_year >= 1995)
+{Data_Limpia_2 <- filter(Data_Limpia, Data_Limpia$raised_amount_usd >= 100000, Data_Limpia$funded_year >= 1995)
 
 Data_Limpia_2 <- na.omit(Data_Limpia_2) # (Eliminar NA y valores nulos)
 
 Data_Limpia_3 <- select(Data_Limpia_2, company_category_code, funded_year, raised_amount_usd) %>%
-  filter(Data_Limpia_2$company_category_code!= "")
+  filter(Data_Limpia_2$company_category_code!= "")}
 
 # IDEA: Podriamos segmentar las variables en varios tipos.
 # Ej: ECONOMY (ecommerce, enterpise, finance) TECHNOLOGY (analytics, game_video, mobile, nanotech, software)
@@ -59,15 +61,6 @@ ggplot(data = Data_Limpia_3, aes(x = company_category_code, y = raised_amount_us
        y = "Inversion en USD", 
        x = ""
   )
-
-## Observaciones Gráfico 1
-
-# 32 de las Startups no recibieron inversiones por sobre los 1.000.000.000 USD, lo que equivale al 78% del total de las Startups. Por ende, aquellas que recibieron por sobre los 1.000.000.00 USD equivalen a 22%.
-# Las startups con mayores inversiones son Mobile, Health y Social. (liderando Mobile).
-# Durante el año 2000 hubo un incremento en inversiones de Startups Mobile.
-# Las Startups que mas tuvieron inversion tardía (2006 - 2013) fueron Health, Education, Network Hosting, Security.
-# A partir del año 2005 se comenzó a ver un alto incremento en Inversiones de Startups.
-
 
 ## Gráfico de burbuja 1
 
@@ -141,27 +134,30 @@ Total_Inv_Cat %>%
   
 ## Gráfico "Total de Inversiones por Año"
 
-Total_Inv_Year <- Data_Limpia_3 %>%
+{Total_Inv_Year <- Data_Limpia_3 %>%
   group_by(Data_Limpia_3$funded_year) %>%
   summarise(sum(raised_amount_usd))
+Total_Inv_Year <- Total_Inv_Year %>%
+  filter(Total_Inv_Year$`Data_Limpia_3$funded_year` >= 2005)}
 
 ggplot(data = Total_Inv_Year, aes(x = `Data_Limpia_3$funded_year`, y = `sum(raised_amount_usd)`)) +
-  geom_segment(aes(x = `Data_Limpia_3$funded_year`, xend = `Data_Limpia_3$funded_year`, y = `sum(raised_amount_usd)`, yend = 0), size = 8, color = "cyan3") +
+  geom_segment(aes(x = `Data_Limpia_3$funded_year`, xend = `Data_Limpia_3$funded_year`, y = `sum(raised_amount_usd)`, yend = 0), size = 12, color = "cyan3") +
   theme_light() +
   theme(
     panel.grid.major.y = element_blank(),
     panel.border = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  labs(title = paste("El periodo del exito de las Startups"), 
+  labs(title = paste("El boom de las Startups"), 
        caption="FUENTE: Base de Datos Crunchbase 2013",
        subtitle = paste("Total de Inversiones a Startups por Año a partir de los 100.000 USD entre 1995 - 2013")) +
   scale_y_continuous(labels = scales::dollar_format(), breaks = c(20000000000, 40000000000, 60000000000, 80000000000, 100000000000)) +
-  scale_x_continuous(breaks = c(1995, 1997, 1999, 2001, 2003, 2005, 2007, 2009, 2011, 2013)) +
+  scale_x_continuous(breaks = c(2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013)) +
   ylab("Inversiones en USD") +
   xlab("Año")
+# Se omitieron inversiones a años anteriores a 2005 dado que puede que exista la
+# postibilidad de que hayan datos perdidos o registros nulos (debido al cambio
+# brusco que sufren las inversiones de un año a otro).
 
 ### Notas:
-
 # Nico: Eje Y de ingles a español (Gráfico 1)
-# Nacho: Graficar linea del promedio de inversiones (Gráfico 2)
