@@ -1,13 +1,18 @@
 #Librerias
 
 {library(readr)
-library(dplyr)
-library(ggplot2)
 library(tidyverse)
 library(hrbrthemes)
 library(viridis)
 library(lubridate)
-library(RCurl)}
+library(RCurl)
+library(car)
+library(psych)
+library(ggpubr)
+library(ggthemes)
+library(RCurl)
+library(magrittr)
+library(knitr)}
 
 # Observaciones2
 
@@ -37,7 +42,51 @@ Data_Limpia_2 <- na.omit(Data_Limpia_2) # (Eliminar NA y valores nulos)
 Data_Limpia_3 <- select(Data_Limpia_2, company_category_code, funded_year, raised_amount_usd) %>%
   filter(Data_Limpia_2$company_category_code!= "")}
 
-rename(Data_Limpia_3, Biotecnologia = biotech, Software = software, M髒il = mobile, Tecnologia_limpia = cleantech, Empresa = enterprise, Web = web, Medicinal = medical, Publicidad = advertising, Comercio_Electronico = ecommerce, Servidor_de_Red = network_hosting, Semiconductor = semiconductor, Hardware = hardware, Video_Juegos = games_video, Analitica = analytics, Seguridad = security, Social = social, Finanzas = finance, Salud = health, Nanotecnologia = nanotech, Relaciones_Publicas = public_relations, Automotora = automotive, Otros = other, Buscar = search, Educaci髇 = education, Fabricaci髇 = manufacturing, Noticias = news, Moda = fashion, Viaje = travel, Mensajeria = messaging, Consultoria = consulting, Transporte = transportation, Musica = music, Foto_Video = photo_video, Hoteleria = hospitality, Bienes_Raices = real_estate, Organizaci髇_sin_fines_de_lucro = nonprofit, Legal = legal, Dise駉 = design, Deportes = sports, Local = local, Mascotas = pets, Gobierno = government)
+#### Cambio de nombres a espa帽ol y mayuscula.
+
+{ Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "sports"] = "Deporte"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "biotech"] = "Biotecnologia"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "software"] = "Software"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "mobile"] = "M贸vil"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "cleantech"] = "Limpieza de Tecnologia"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "enterprise"] = "Empresa"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "web"] = "Web"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "medical"] = "Medicina"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "advertising"] = "Publicidad"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "ecommerce"] = "Comercio Electronico"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "network_hosting"] = "Servidor de Red"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "semiconductor"] = "Semiconductor"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "hardware"] = "Hardware"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "games_video"] = "Videojuegos"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "analytics"] = "Anal铆tica"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "security"] = "Seguridad"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "social"] = "Social"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "finance"] = "Finanzas"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "health"] = "Salud"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "nanotech"] = "Nanotecnologia"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "public_relations"] = "Relaciones Publicas"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "automotive"] = "Automotriz"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "other"] = "Otros"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "search"] = "Busqueda"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "education"] = "Educaci贸n"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "manufacturing"] = "Fabricaci贸n"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "news"] = "Noticias"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "fashion"] = "Moda"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "travel"] = "Viaje"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "messaging"] = "Mensajeria"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "consulting"] = "Consultoria"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "transportation"] = "Transporte"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "music"] = "Musica"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "photo_video"] = "Fotografia y Video"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "hospitality"] = "Hoteleria"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "real_estate"] = "Bienes Raices"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "nonprofit"] = "Organizaci贸n sin Fines de Lucro"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "legal"] = "Legal"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "design"] = "Dise帽o"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "sports"] = "Deportes"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "local"] = "Comercio Local"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "pets"] = "Mascotas"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "government"] = "Gobierno"}
 
 # IDEA: Podriamos segmentar las variables en varios tipos.
 # Ej: ECONOMY (ecommerce, enterpise, finance) TECHNOLOGY (analytics, game_video, mobile, nanotech, software)
