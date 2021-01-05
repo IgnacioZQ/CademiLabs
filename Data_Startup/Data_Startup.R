@@ -48,7 +48,7 @@ Data_Limpia_3 <- select(Data_Limpia_2, company_category_code, funded_year, raise
   Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "biotech"] = "Biotecnologia"
   Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "software"] = "Software"
   Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "mobile"] = "Móvil"
-  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "cleantech"] = "Limpieza de Tecnologia"
+  Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "cleantech"] = "Tecnologias Limpias"
   Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "enterprise"] = "Empresa"
   Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "web"] = "Web"
   Data_Limpia_3$company_category_code[Data_Limpia_3$company_category_code == "medical"] = "Medicina"
