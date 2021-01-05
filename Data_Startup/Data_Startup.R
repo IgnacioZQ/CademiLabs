@@ -37,6 +37,8 @@ Data_Limpia_2 <- na.omit(Data_Limpia_2) # (Eliminar NA y valores nulos)
 Data_Limpia_3 <- select(Data_Limpia_2, company_category_code, funded_year, raised_amount_usd) %>%
   filter(Data_Limpia_2$company_category_code!= "")}
 
+rename(Data_Limpia_3, Biotecnologia = biotech, Software = software, Móvil = mobile, Tecnologia_limpia = cleantech, Empresa = enterprise, Web = web, Medicinal = medical, Publicidad = advertising, Comercio_Electronico = ecommerce, Servidor_de_Red = network_hosting, Semiconductor = semiconductor, Hardware = hardware, Video_Juegos = games_video, Analitica = analytics, Seguridad = security, Social = social, Finanzas = finance, Salud = health, Nanotecnologia = nanotech, Relaciones_Publicas = public_relations, Automotora = automotive, Otros = other, Buscar = search, Educación = education, Fabricación = manufacturing, Noticias = news, Moda = fashion, Viaje = travel, Mensajeria = messaging, Consultoria = consulting, Transporte = transportation, Musica = music, Foto_Video = photo_video, Hoteleria = hospitality, Bienes_Raices = real_estate, Organización_sin_fines_de_lucro = nonprofit, Legal = legal, Diseño = design, Deportes = sports, Local = local, Mascotas = pets, Gobierno = government)
+
 # IDEA: Podriamos segmentar las variables en varios tipos.
 # Ej: ECONOMY (ecommerce, enterpise, finance) TECHNOLOGY (analytics, game_video, mobile, nanotech, software)
 
