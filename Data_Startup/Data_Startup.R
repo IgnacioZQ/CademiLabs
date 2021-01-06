@@ -181,8 +181,12 @@ Total_Inv_Cat %>%
        subtitle = "Total de Inversiones a Startups por Categoria a partir de los 100.000 USD entre 1995 - 2013") +
   scale_y_continuous(labels = scales::dollar_format(), breaks = c(20000000000, 40000000000, 60000000000, 80000000000, 100000000000)) +
   ylab("Inversiones en USD") +
-  xlab("Categoria")
-  
+  xlab("")
+
+# Datos extra
+
+summary(Total_Inv_Cat)
+
 ## Gráfico "Total de Inversiones por Año"
 
 {Total_Inv_Year <- Data_Limpia_3 %>%
@@ -199,7 +203,7 @@ ggplot(data = Total_Inv_Year, aes(x = `Data_Limpia_3$funded_year`, y = `sum(rais
     panel.border = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  labs(title = paste("El boom de las Startups"), 
+  labs(title = paste("El Boom de las Startups"), 
        caption="FUENTE: Base de Datos Crunchbase 2013",
        subtitle = paste("Total de Inversiones a Startups por Año a partir de los 100.000 USD entre 1995 - 2013")) +
   scale_y_continuous(labels = scales::dollar_format(), breaks = c(20000000000, 40000000000, 60000000000, 80000000000, 100000000000)) +
@@ -210,6 +214,11 @@ ggplot(data = Total_Inv_Year, aes(x = `Data_Limpia_3$funded_year`, y = `sum(rais
 # postibilidad de que hayan datos perdidos o registros nulos (debido al cambio
 # brusco que sufren las inversiones de un año a otro).
 
+# Datos extra
+
+summary(Total_Inv_Year)
+
 ### Notas:
-# Nico: Eje Y de ingles a español (Gráfico 1)
 # Dividir la columna de Inversiones por 1000 USD.
+
+
