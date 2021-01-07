@@ -166,9 +166,9 @@ Total_Inv_Cat %>%
   arrange(`sum(raised_amount_usd)`) %>%
   mutate(company_category_code = factor(company_category_code, levels = company_category_code)) %>%
   ggplot(aes(x = company_category_code, y = `sum(raised_amount_usd)`)) +
-  geom_segment(aes(x = company_category_code, xend = company_category_code, y = `sum(raised_amount_usd)`, yend = 0), size = 1.6, color = "cyan2") +
+  geom_segment(aes(x = company_category_code, xend = company_category_code, y = `sum(raised_amount_usd)`, yend = 0), size = 1.6, color = "turquoise2") +
   theme_light() +
-  geom_point( size = 3.5, color="cyan3") +
+  geom_point( size = 3.5, color="turquoise3") +
   geom_point( size = 1.5, color="white") +
   coord_flip() +
   theme(
