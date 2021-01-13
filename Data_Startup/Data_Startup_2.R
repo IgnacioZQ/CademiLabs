@@ -1,8 +1,7 @@
 # Librerias ----
 
 {library(RCurl)
-library(tidyverse)
-library(viridis)}
+library(tidyverse)}
 
 # Cargar Data ----
 
