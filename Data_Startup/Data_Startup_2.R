@@ -2,24 +2,19 @@
 
 {library(RCurl)
 library(tidyverse)}
-
+library(tidyr)
 # Cargar Data ----
 
-{Inv <- getURL("https://raw.githubusercontent.com/IgnacioZQ/CademiLabs/main/crunch2020/Inversion.csv")
+{Inv <- read.csv("https://raw.githubusercontent.com/IgnacioZQ/CademiLabs/main/crunch2020/Inversion.csv")
 Inv <- read.csv(text = Inv)
 Inv <- na.omit(Inv)
 Inv <- Inv %>%
-  filter(Inv$co_category_list!= "") }
+  filter(Inv$co_category_list!= " ") }
 
 Inv_Test <- str_split(Inv$co_category_list, ",", simplify = T) # Separar startups por Categoria de las listas.
 
+Inv_Final <- full_join(Inv_Test, Inv, by = NULL)
 # Manejo Data ----
-
-Inv_2 <- Inv %>%
-  group_by(Inv$co_category_list) %>%
-  summarise(sum(raised_amount_usd))
-
-
 
 # Graficar ----
 
